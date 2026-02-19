@@ -23,7 +23,8 @@ export const SubmitButton = () => {
             formData.append('nodes', JSON.stringify(nodes));
             formData.append('edges', JSON.stringify(edges));
 
-            const response = await fetch('http://127.0.0.1:8000/pipelines/parse', {
+            // Use relative path for API calls to work both locally (via proxy) and on Vercel (via rewrites)
+            const response = await fetch('/pipelines/parse', {
                 method: 'POST',
                 body: formData,
             });
