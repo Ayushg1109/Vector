@@ -1,5 +1,5 @@
 // BaseNode.js
-import { Handle, Position } from 'reactflow';
+import { Handle } from 'reactflow';
 import './BaseNode.css';
 
 export const BaseNode = ({ id, label, children, handles = [], style = {} }) => {
