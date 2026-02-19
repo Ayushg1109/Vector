@@ -1,8 +1,0 @@
-{
-    "rewrites": [
-        {
-            "source": "/pipelines/:path*",
-            "destination": "/backend/main.py"
-        }
-    ]
-}

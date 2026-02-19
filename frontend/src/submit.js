@@ -23,8 +23,10 @@ export const SubmitButton = () => {
             formData.append('nodes', JSON.stringify(nodes));
             formData.append('edges', JSON.stringify(edges));
 
-            // Use relative path for API calls to work both locally (via proxy) and on Vercel (via rewrites)
-            const response = await fetch('/pipelines/parse', {
+            // In development, we use the proxy or localhost
+            // In production (Vercel), we use the environment variable
+            const API_URL = process.env.REACT_APP_API_URL || 'http://127.0.0.1:8000';
+            const response = await fetch(`${API_URL}/pipelines/parse`, {
                 method: 'POST',
                 body: formData,
             });
