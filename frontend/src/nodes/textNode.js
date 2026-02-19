@@ -19,20 +19,30 @@ export const TextNode = ({ id, data }) => {
 
   // Parse variables and update handles
   useEffect(() => {
+    // Regex to match {{ variable }}
     const variableRegex = /\{\{\s*([a-zA-Z_$][a-zA-Z0-9_$]*)\s*\}\}/g;
     const matches = [...currText.matchAll(variableRegex)];
     const variables = matches.map(match => match[1]);
+
+    // Use Set to get unique variable names
     const uniqueVariables = [...new Set(variables)];
 
     const newHandles = uniqueVariables.map((variable, index) => ({
       type: 'target',
       position: Position.Left,
       id: variable,
-      style: { top: `${(index + 1) * 20 + 50}px` } // Simple dynamic positioning
+      // Dynamic positioning: spread them out evenly or stack them
+      // Starting from a bit lower to avoid the header
+      style: { top: `${(index + 1) * 30 + 40}px`, background: '#6366f1' }
     }));
 
     // Add the default output handle
-    newHandles.push({ type: 'source', position: Position.Right, id: 'output' });
+    newHandles.push({
+      type: 'source',
+      position: Position.Right,
+      id: 'output',
+      style: { background: '#6366f1' }
+    });
 
     setHandles(newHandles);
   }, [currText]);
@@ -46,9 +56,9 @@ export const TextNode = ({ id, data }) => {
       id={id}
       label="Text"
       handles={handles}
-      style={{ height: 'auto', minHeight: '100px' }}
+      style={{ height: 'auto', minHeight: '150px' }} // Allow node to grow
     >
-      <label>
+      <label style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
         Text:
         <textarea
           ref={textareaRef}
@@ -58,8 +68,10 @@ export const TextNode = ({ id, data }) => {
             width: '100%',
             resize: 'none',
             overflow: 'hidden',
-            minHeight: '30px',
-            fontFamily: 'inherit'
+            minHeight: '60px',
+            fontFamily: 'inherit',
+            marginTop: '5px',
+            boxSizing: 'border-box'
           }}
           rows={1}
         />

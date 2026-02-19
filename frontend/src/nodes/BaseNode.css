@@ -1,72 +1,85 @@
 /* BaseNode.css */
 .base-node {
     width: 200px;
-    background: #ffffff;
-    border-radius: 8px;
-    border: 1px solid #e2e8f0;
+    background: var(--node-bg);
+    border-radius: 12px;
+    /* Smooth rounded corners */
+    border: 1px solid var(--node-border);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    transition: all 0.2s ease-in-out;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
     overflow: hidden;
 }
 
 .base-node:hover {
-    border-color: #6366f1;
+    border-color: var(--node-border-hover);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    /* Elevated hover state */
+    transform: translateY(-2px);
 }
 
 .node-header {
-    background: #f8fafc;
-    padding: 8px 12px;
-    border-bottom: 1px solid #e2e8f0;
+    background: var(--node-header-bg);
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--node-border);
     font-weight: 600;
     font-size: 14px;
-    color: #334155;
+    color: var(--text-color);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    letter-spacing: 0.025em;
 }
 
 .node-content {
-    padding: 12px;
+    padding: 16px;
     font-size: 13px;
     color: #475569;
 }
 
 .node-content label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     font-weight: 500;
+    color: var(--text-color);
 }
 
 .node-content input,
 .node-content select,
 .node-content textarea {
     width: 100%;
-    padding: 6px;
-    border: 1px solid #cbd5e1;
-    border-radius: 4px;
+    padding: 8px 10px;
+    border: 1px solid var(--input-border);
+    border-radius: 6px;
     font-size: 13px;
-    margin-top: 4px;
+    margin-top: 6px;
     outline: none;
-    transition: border-color 0.15s;
+    background-color: #fff;
+    transition: all 0.2s;
+    color: #334155;
+    box-sizing: border-box;
+    /* Identify fix */
 }
 
 .node-content input:focus,
 .node-content select:focus,
 .node-content textarea:focus {
-    border-color: #6366f1;
-    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--input-focus-ring);
 }
 
 .react-flow__handle {
-    width: 10px;
-    height: 10px;
-    background: #94a3b8;
+    width: 12px;
+    height: 12px;
+    background: var(--primary);
     border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background 0.2s;
 }
 
 .react-flow__handle:hover {
-    background: #6366f1;
+    background: var(--primary-hover);
+    width: 14px;
+    height: 14px;
 }
